@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>最新消息</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .hover\:shadow-xl:hover {
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Title Section -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">最新消息</h1>
+      <p class="text-gray-600">掌握期貨選擇權市場最新動態</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="mb-8">
+      <div class="flex flex-wrap gap-2">
+        <button class="px-4 py-2 rounded-full text-sm font-medium bg-blue-600 text-white">
+          全部新聞
+        </button>
+        <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+          市場動態
+        </button>
+        <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+          政策法規
+        </button>
+        <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+          分析報告
+        </button>
+        <button class="px-4 py-2 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
+          教育資訊
+        </button>
+      </div>
+    </div>
+
+    <!-- Featured News -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">熱門新聞</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Hot News 1 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="relative">
+            <img src="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="台指期貨創新高 外資持續看好台股後市" class="w-full h-48 object-cover">
+            <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+              熱門
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 mb-2">
+              <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                市場動態
+              </span>
+              <div class="flex items-center space-x-1 text-sm text-gray-500">
+                <span class="h-4 w-4">🕒</span>
+                <span>10 小時前</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">台指期貨創新高 外資持續看好台股後市</h3>
+            <p class="text-gray-600 mb-4">台指期貨今日突破歷史新高點，外資持續加碼台股，顯示對台灣市場的信心...</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <span>作者: 財經記者</span>
+                <div class="flex items-center space-x-1">
+                  <span class="h-4 w-4">👁</span>
+                  <span>1250</span>
+                </div>
+              </div>
+              <button class="text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                <span>閱讀更多</span>
+                <span class="h-4 w-4">🔗</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Hot News 2 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="relative">
+            <img src="https://images.pexels.com/photos/7567565/pexels-photo-7567565.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="選擇權新制上路 投資人須注意相關規定" class="w-full h-48 object-cover">
+            <div class="absolute top-4 left-4 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+              熱門
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-2 mb-2">
+              <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                政策法規
+              </span>
+              <div class="flex items-center space-x-1 text-sm text-gray-500">
+                <span class="h-4 w-4">🕒</span>
+                <span>9 小時前</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">選擇權新制上路 投資人須注意相關規定</h3>
+            <p class="text-gray-600 mb-4">金管會宣布選擇權交易新制度正式上路，投資人在交易時需要注意相關規定...</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <span>作者: 政策分析師</span>
+                <div class="flex items-center space-x-1">
+                  <span class="h-4 w-4">👁</span>
+                  <span>890</span>
+                </div>
+              </div>
+              <button class="text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                <span>閱讀更多</span>
+                <span class="h-4 w-4">🔗</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News List -->
+    <div class="space-y-6">
+      <h2 class="text-xl font-semibold text-gray-900">所有新聞</h2>
+      
+      <!-- News Item 1 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+        <div class="flex items-start space-x-4">
+          <img src="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=400&h=250&fit=crop" alt="台指期貨創新高 外資持續看好台股後市" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
+          <div class="flex-1">
+            <div class="flex items-center space-x-2 mb-2">
+              <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                市場動態
+              </span>
+              <div class="flex items-center space-x-1 text-sm text-gray-500">
+                <span class="h-4 w-4">🕒</span>
+                <span>10 小時前</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">台指期貨創新高 外資持續看好台股後市</h3>
+            <p class="text-gray-600 mb-3">台指期貨今日突破歷史新高點，外資持續加碼台股，顯示對台灣市場的信心...</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <span>作者: 財經記者</span>
+                <div class="flex items-center space-x-1">
+                  <span class="h-4 w-4">👁</span>
+                  <span>1250</span>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">台指期貨</span>
+                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">外資</span>
+                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">台股</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

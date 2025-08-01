@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社群聊天-AI智能期權交易助手</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .hover\:shadow-xl:hover {
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">社群聊天</h1>
+      <p class="text-gray-600">與其他交易者分享經驗和討論市場動態</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Topics Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-xl shadow-lg p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">討論主題</h2>
+          <div class="space-y-2">
+            <!-- Topic buttons -->
+            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+              <span class="font-medium text-gray-900">全部討論</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">156</span>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+              <span class="font-medium text-gray-900">期貨交易</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">45</span>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+              <span class="font-medium text-gray-900">選擇權策略</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">38</span>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+              <span class="font-medium text-gray-900">技術分析</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">29</span>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+              <span class="font-medium text-gray-900">市場動態</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">44</span>
+            </button>
+          </div>
+
+          <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+            <div class="flex items-center space-x-2 mb-2">
+              <span class="h-5 w-5 text-blue-600">👥</span>
+              <span class="font-medium text-blue-900">在線用戶</span>
+            </div>
+            <p class="text-2xl font-bold text-blue-600">248</p>
+            <p class="text-sm text-blue-700">位交易者正在討論</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discussion Content -->
+      <div class="lg:col-span-3">
+        <!-- New Post -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="h-5 w-5 text-blue-600">💬</span>
+            <h3 class="text-lg font-semibold text-gray-900">發表新討論</h3>
+          </div>
+          <div class="flex space-x-4">
+            <textarea
+              placeholder="分享您的市場觀點或交易心得..."
+              class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              rows="3"
+            ></textarea>
+            <button
+              class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
+            >
+              <span class="h-4 w-4">✉️</span>
+              <span>發送</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Discussions -->
+        <div class="space-y-4">
+          <!-- Discussion 1 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="flex items-start space-x-4">
+              <img
+                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                alt="交易達人"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-2">
+                  <h3 class="text-lg font-semibold text-gray-900">台指期貨今日走勢分析</h3>
+                  <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">熱門</span>
+                </div>
+                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+                  <div class="flex items-center space-x-1">
+                    <span class="h-4 w-4">👤</span>
+                    <span>交易達人</span>
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <span class="h-4 w-4">⏰</span>
+                    <span>2小時前</span>
+                  </div>
+                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full">期貨交易</span>
+                </div>
+                <p class="text-gray-700 mb-4">根據技術指標分析，台指期貨今日可能出現震盪整理的走勢...</p>
+                <div class="flex items-center space-x-6">
+                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <span class="h-4 w-4">👍</span>
+                    <span>25</span>
+                  </button>
+                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <span class="h-4 w-4">💬</span>
+                    <span>12 回覆</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Discussion 2 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="flex items-start space-x-4">
+              <img
+                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+                alt="期權新手"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-2">
+                  <h3 class="text-lg font-semibold text-gray-900">選擇權買權策略討論</h3>
+                </div>
+                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+                  <div class="flex items-center space-x-1">
+                    <span class="h-4 w-4">👤</span>
+                    <span>期權新手</span>
+                  </div>
+                  <div class="flex items-center space-x-1">
+                    <span class="h-4 w-4">⏰</span>
+                    <span>4小時前</span>
+                  </div>
+                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full">選擇權策略</span>
+                </div>
+                <p class="text-gray-700 mb-4">想請教各位前輩關於買權的時機判斷...</p>
+                <div class="flex items-center space-x-6">
+                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <span class="h-4 w-4">👍</span>
+                    <span>15</span>
+                  </button>
+                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
+                    <span class="h-4 w-4">💬</span>
+                    <span>8 回覆</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- More discussions can be added similarly -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

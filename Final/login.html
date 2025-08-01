@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>登入-AI智能期權交易助手</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Additional styles for the password input toggle -->
+    <style>
+        .error {
+            color: red;
+            font-size: 0.875rem;
+        }
+        .input-error {
+            border-color: red;
+            background-color: #f8d7da;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">歡迎回來!</h1>
+                                    </div>
+                                    <form id="loginForm" class="user">
+                                        <div id="generalError" class="error" style="display: none;"></div>
+
+                                        <!-- Email Field -->
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="輸入電子郵件..." required>
+                                            <div id="emailError" class="error" style="display: none;"></div>
+                                        </div>
+
+                                        <!-- Password Field -->
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user" id="password" placeholder="密碼" required>
+                                            <button type="button" id="togglePassword" class="btn btn-link p-0" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                                                <i class="fas fa-eye" id="eyeIcon"></i>
+                                            </button>
+                                            <div id="passwordError" class="error" style="display: none;"></div>
+                                        </div>
+
+                                        <!-- Remember Me Checkbox -->
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="rememberMe">
+                                                <label class="custom-control-label" for="rememberMe">Remember Me</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" id="submitBtn">
+                                            登入
+                                        </button>
+
+                                        <hr>
+
+                                        <!-- Google Login Button -->
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> 使用 Google 帳戶登入
+                                        </a>
+
+                                        <!-- Facebook Login Button -->
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> 使用 Facebook 帳戶登入
+                                        </a>
+                                    </form>
+
+                                    <hr>
+
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">忘記密碼?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">建立帳戶!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        // Password visibility toggle
+        document.getElementById("togglePassword").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const eyeIcon = document.getElementById("eyeIcon");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            }
+        });
+
+        // Form Validation
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Clear previous errors
+            document.getElementById("generalError").style.display = "none";
+            document.getElementById("emailError").style.display = "none";
+            document.getElementById("passwordError").style.display = "none";
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            let isValid = true;
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                document.getElementById("emailError").textContent = "請輸入電子郵件";
+                document.getElementById("emailError").style.display = "block";
+                document.getElementById("email").classList.add("input-error");
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                document.getElementById("emailError").textContent = "請輸入有效的電子郵件格式";
+                document.getElementById("emailError").style.display = "block";
+                document.getElementById("email").classList.add("input-error");
+                isValid = false;
+            } else {
+                document.getElementById("email").classList.remove("input-error");
+            }
+
+            // Validate password
+            if (!password) {
+                document.getElementById("passwordError").textContent = "請輸入密碼";
+                document.getElementById("passwordError").style.display = "block";
+                document.getElementById("password").classList.add("input-error");
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById("passwordError").textContent = "密碼至少需要6個字元";
+                document.getElementById("passwordError").style.display = "block";
+                document.getElementById("password").classList.add("input-error");
+                isValid = false;
+            } else {
+                document.getElementById("password").classList.remove("input-error");
+            }
+
+            // If valid, proceed to simulate login
+            if (isValid) {
+                // Simulate login request (replace with real API request)
+                setTimeout(function () {
+                    alert("登入成功！");
+                    // Redirect to another page on successful login (replace with actual logic)
+                    window.location.href = "index.html";
+                }, 1000);
+            } else {
+                document.getElementById("generalError").textContent = "登入失敗，請檢查您的帳號密碼";
+                document.getElementById("generalError").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
