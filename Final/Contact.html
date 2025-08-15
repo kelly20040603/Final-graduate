@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+ 
+
+<head>
+	 <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
+    <meta property="og:title" content="聯繫相關業務服務單位 | 富邦金控 Fubon Financial">
+    <meta property="og:description" name="description" content="聯繫相關業務服務單位">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fubon.com/financialholdings/home/index.html">
+    <meta property="og:image" content="https://www.fubon.com/financialholdings/Content/img/home/fb-financial.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="聯繫相關業務服務單位 | 富邦金控 Fubon Financial">
+    <title>聯繫相關業務服務單位 | 富邦金控 Fubon Financial</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/financialholdings/Content/img/common/favicon.ico">
+    <link rel="canonical" href="https://www.fubon.com/financialholdings/service/sub_contact.html">
+    <!-- master page include css begin -->
+    <link rel="stylesheet" href="/financialholdings/Content/css/common.css?bdb92e23">
+    <!-- master page include css end -->
+	<!-- self page include css begin -->
+    <link rel="stylesheet" href="/financialholdings/Content/css/style2015.css?bdb92e23">
+	<style>
+	.menu_wh{
+		width: 19%;
+		display: inline-block;
+		margin-top: 20px;
+		margin-bottom:  20px; 
+		font-weight: 700;
+		color: #008fc7;	
+		text-align: center;
+	}
+	.menu_pic{
+		width: 35px;
+		height: auto;
+		margin-bottom: -10px;
+		margin-right: 5px;
+	}
+	@media only screen and (max-width: 870px) {
+		.menu_wh{
+			width: 30%;
+			margin-left: 1%;
+			margin-right: 1%;
+		}
+	}
+	.Pmenu{
+		border: solid 1px #0089d1;
+		background-color: #f5faff;
+		display:flex;
+		flex-wrap:wrap;
+		justify-content: space-evenly;
+	}
+	.Pmenu_box{
+		margin:1em 0;
+		font-weight: 700;
+		color: #008fc7;
+		text-align: center;
+	}
+	.Pmenu_box1{
+		width:22%;
+	}
+	.Pmenu_box3{
+		width:26%
+	}
+	.Pmenu_title{
+		width:fit-content;
+		font-size:1.2em;
+		text-align: left;
+		margin:auto;
+		overflow: visible;
+		position: relative;
+	}
+	.Pmenu_link{
+		width:30%;
+	}
+	.Pmenu_linkbox{
+		margin:auto;
+	}
+	.Pmenu_pic{
+		width: 35px;
+		height: auto;
+		vertical-align: bottom;
+		position: absolute;
+		left: -35px;
+		top: -3px;
+	}
+	@media only screen and (max-width: 870px) {
+		.Pmenu_box{
+			width: 30%;
+		}
+		.Pmenu_box3{
+			width:90%;
+		}
+		.Pmenu_pic{
+			display:block;
+			margin:auto;
+			position: static;
+		}
+		.mobile_hide{
+			display:none;
+		}
+	}
+	</style>
+    <!-- self page include css end -->
+    
+	<!-- script src="/member/chkSSL.js"></script -->
+	<script src="/member/openWindow.js"></script>
+	<script src="/member/js/prototype.js"></script>
+	<script src="/member/js/adr_zipcode.js"></script>
+	<script language="javaScript">
+
+		function getAjaxString(url,pars){
+			var str
+			var my = new Ajax.Request(URL,{method:'get',parameters:pars,asynchronous:false,onCreate:function(){},onSuccess:function(transport){str = transport.transport.responseText;},onFailure:function(transport){alert("Failure!");},onComplete:function(){}});
+			return str;
+		}
+
+		function buildOptions(a,n){
+			var sid,i,b,osel,odata,d;
+			for(i=a[0].length-1;i>=n;--i){
+				osel = document.getElementById(a[0][i]);
+				while(osel[1]){
+					osel[1] = null;
+				}
+				if(!osel[0]){
+					osel[0] = new Option('請選擇','');
+				}
+			}
+			if(n>0&&(document.getElementById(a[0][n-1]).selectedIndex<1)){
+			}
+			else{
+	  		var odata = a;
+				for(i=0;i<n;++i){
+					sid = document.getElementById(a[0][i]).selectedIndex;
+					odata = odata[sid];
+				}
+				b = (n<a[0].length-1);
+				for(i=1;i<odata.length;++i){
+					d = (b?odata[i][0]:odata[i]);
+					osel[i] = new Option(d[1],d[0]);
+				}
+			}
+		}
+		
+		// setOptions(JS陣列(用ASP產生的),選擇值)
+		function setOptions(a,s){
+			var i;
+			var a_val = s.split(',');
+			for(i=0;i<a_val.length;++i){
+				buildOptions(a,i);
+				document.getElementById(a[0][i]).value = a_val[i];
+			}
+			if(a_val.length<a[0].length){
+				buildOptions(a,a_val.length);
+			}
+		}
+
+		function start(){
+			//設定縣市的初始狀態
+			var i1_country;
+			var i2_country;
+			var country_jsp = '';
+			for(i1_country=1;i1_country<a_zipcode.length;i1_country++){
+				var a1 = a_zipcode[i1_country];
+				if(country_jsp==a1[0][1]){
+					country_jsp = a1[0][0];
+					break;
+				}
+			}
+			//設定區域的初始狀態
+			var i1_village;
+			var i2_village;
+			var village_jsp = '';
+			var village_index = 0;
+			for(i1_village=1;i1_village<a_zipcode.length;i1_village++){
+				var a2 = a_zipcode[i1_village];
+				for(i2_village=1;i2_village<a1.length;i2_village++){
+					if(village_jsp==a1[i2_village][1]){
+						village_jsp = a1[i2_village][0];
+						village_index = i2_village;
+						break;
+					}
+				}
+			}
+			
+			setOptions(a_zipcode,country_jsp+','+'');
+			document.CodeForm.adr_village.selectedIndex = village_index;
+			var errType = 0;
+			var errMsg = "";
+			switch(errType){
+				case 1:
+					errMsg = "姓名不能空白或有特殊符號";
+					document.CodeForm.member_name.focus();
+					document.CodeForm.member_name.value="";
+					alert(errMsg);
+					break;
+				case 3:
+					errMsg = "郵遞區號有特殊符號";
+					document.CodeForm.adr_zip_code.focus();
+					document.CodeForm.adr_zip_code.value="";
+					alert(errMsg);
+					break;
+				case 4:
+					errMsg = "縣市區域尚未選取";
+					document.CodeForm.adr_country.focus();
+					alert(errMsg);
+					break;
+				case 5:
+					errMsg = "地址有特殊符號";
+					document.CodeForm.adr_address.focus();
+					document.CodeForm.adr_address.value="";
+					alert(errMsg);
+					break;
+				case 6:
+					errMsg = "縣市區域尚未選取";
+					document.CodeForm.adr_country.focus();
+					alert(errMsg);
+					break;
+				case 7:
+					errMsg = "電話區碼不能空白";
+					document.CodeForm.phone_home1.focus();
+					alert(errMsg);
+					break;
+				case 8:
+					errMsg = "電話區碼有特殊符號";
+					document.CodeForm.phone_home1.focus();
+					document.CodeForm.phone_home1.value='';
+					alert(errMsg);
+					break;
+				case 9:
+					errMsg = "電話區碼不是數字";
+					document.CodeForm.phone_home1.focus();
+					document.CodeForm.phone_home1.value="";
+					alert(errMsg);
+					break;
+				case 10:
+					errMsg = "電話號碼不能空白";
+					document.CodeForm.phone_home1.focus();
+					alert(errMsg);
+					break;
+				case 11:
+					errMsg = "電話號碼有特殊符號";
+					document.CodeForm.phone_home2.focus();
+					document.CodeForm.phone_home2.value="";
+					alert(errMsg);
+					break;
+				case 12:
+					errMsg = "電話號碼不是數字";
+					document.CodeForm.phone_home2.focus();
+					document.CodeForm.phone_home2.value="";
+					alert(errMsg);
+					break;
+				case 13:
+					errMsg = "電話號碼不能小於七碼";
+					document.CodeForm.phone_home2.focus();
+					document.CodeForm.phone_home2.value="";
+					alert(errMsg);
+					break;
+				case 14:
+					errMsg = "電話分機有特殊符號";
+					document.CodeForm.phone_home3.focus();
+					document.CodeForm.phone_home3.value="";
+					alert(errMsg);
+					break;
+				case 15:
+					errMsg = "電話分機不是數字";
+					document.CodeForm.phone_home3.focus();
+					document.CodeForm.phone_home3.value="";
+					alert(errMsg);
+					break;
+				case 16:
+					errMsg = "手機不能空白或有特殊符號";
+					document.CodeForm.phone_mobile.focus();
+					document.CodeForm.phone_mobile.value="";
+					alert(errMsg);
+					break;
+				case 17:
+					errMsg = "手機欄位不正確";
+					document.CodeForm.phone_mobile.focus();
+					document.CodeForm.phone_mobile.value="";
+					alert(errMsg);
+					break;
+				case 18:
+					errMsg = "手機欄位必須為09開頭";
+					document.CodeForm.phone_mobile.focus();
+					document.CodeForm.phone_mobile.value="";
+					alert(errMsg);
+					break;
+				case 19:
+					errMsg = "EMAIL不正確";
+					document.CodeForm.email.focus();
+					document.CodeForm.email.value="";
+					alert(errMsg);
+					break;
+				case 20:
+					errMsg = "您從哪得知fubon.com網站-其他欄位有特殊符號";
+					document.CodeForm.member_source7_text.focus();
+					document.CodeForm.member_source7_text.value="";
+					alert(errMsg);
+					break;
+				case 21:
+					errMsg = "喜歡富邦金控哪方面訊息-其他欄位有特殊符號";
+					document.CodeForm.member_msg12_text.focus();
+					document.CodeForm.member_msg12_text.value="";
+					alert(errMsg);
+					break;
+				case 24:
+					errMsg = "地址欄位不能空白";
+					document.CodeForm.adr_address.focus();
+					alert(errMsg);
+					break;
+				case 25:
+					errMsg = "驗證碼錯誤";
+					document.CodeForm.valid_code.focus();
+					alert(errMsg);
+					break;	
+				default:
+					break;
+			}
+		}
+
+		function setZipcode(value){
+			var temp = value.split("#");
+			document.CodeForm.adr_zip_code.value=temp[0];
+			document.cookie='adr_zip_code='+temp[0];
+		}
+
+		function validChar(obj){
+			var specialChar = "`~!@#$%^&*()-_+={}[]\|;:'\"<>?,./";
+			var rtnValue = false;
+			for(var i=0;i<obj.length;i++){
+				if(specialChar.indexOf(obj.charAt(i))!=-1){
+					rtnValue = true;
+				}
+			}
+			return rtnValue;
+		}
+
+		function validChar2(obj){
+			var specialChar = "`~!#$%^&*(){}[]\|;:'\"<>?,/";
+			var rtnValue = false;
+			for(var i=0;i<obj.length;i++){
+				if(specialChar.indexOf(obj.charAt(i))!=-1){
+					rtnValue = true;
+				}
+			}
+			return rtnValue;
+		}
+		
+		function validChar3(obj){
+			var pattern = /^[A-Za-z0-9]+$/;
+			var result =true;
+			for(i=0;i<obj.length;i++){
+				result = result&&pattern.test(obj);
+			}
+			return result;
+		}
+		
+		function alertEmptyID(){
+			alert("請輸入身分證字號");
+			document.CodeForm.member_id.value = "";
+			document.CodeForm.member_id.focus();
+			return false;
+		}
+		
+		function formSubmit(){
+			var check = true;
+			var check_id = true; 
+			if(document.CodeForm.member_id.value!=""|| false){
+				if(false&& document.CodeForm.member_id.value==""){
+					
+				
+					
+				}
+				
+				if(check_id)
+				check = checkID();
+			}
+			//把問題敘述中的半形符號轉換成全型
+			document.getElementById("content1").value = changeToFullwidthForm(document.getElementById("content1").value);
+			var validReg=/^\d{6}$/
+
+			if(check){
+				if(document.CodeForm.member_name.value==""||validChar(document.CodeForm.member_name.value)||validChar6(document.CodeForm.member_name.value)){
+					document.CodeForm.member_name.value = "";
+					document.CodeForm.member_name.focus();
+					alert("姓名不能有特殊符號或空白");
+				}
+				else if(document.CodeForm.questCategory.value==""){
+					alert("請選擇問題類型");
+				}
+				else if(document.getElementById("content1").value ==""){
+					document.CodeForm.content1.focus();
+					alert("請輸入問題敘述");
+				}
+//已將問題敘述中特殊符號轉成全型符號
+// 				else if(validCharContent(document.getElementById("content1").value)){
+// 					document.CodeForm.content1.focus();
+// 					alert("問題敘述不能有特殊符號");
+// 				}
+				else if(document.CodeForm.adr_zip_code.value!=""&&validChar(document.CodeForm.adr_zip_code.value)){
+					document.CodeForm.adr_zip_code.value = "";
+					document.CodeForm.adr_zip_code.focus();
+					alert("地址區碼不能有特殊符號");
+				}
+				else if(document.CodeForm.adr_address.value!=""&&(validChar(document.CodeForm.adr_address.value)||validChar7(document.CodeForm.adr_address.value,"0",10))){
+					document.CodeForm.adr_address.value = "";
+					document.CodeForm.adr_address.focus();
+					alert("地址不能有特殊符號");
+				}
+				else if(document.CodeForm.adr_address.value!="" && (document.getElementById("adr_country").value =="" || document.getElementById("adr_village").value =="")){
+					alert("縣市區域尚未選取");
+				}
+				else if(document.CodeForm.phone_home1.value!=""&&(validChar(document.CodeForm.phone_home1.value)||validChar7(document.CodeForm.phone_home1.value,"0",3))){
+					document.CodeForm.phone_home1.value = "";
+					document.CodeForm.phone_home1.focus();
+					alert("電話區碼不能有特殊符號");
+				}
+				else if(document.CodeForm.phone_home2.value!="" &&( validChar(document.CodeForm.phone_home2.value)||document.CodeForm.phone_home2.value.length<6||validChar7(document.CodeForm.phone_home2.value,"0",11)||validChar8(document.CodeForm.phone_home2.value))){
+					document.CodeForm.phone_home2.value = "";
+					document.CodeForm.phone_home2.focus();
+					alert("電話號碼不能有特殊符號");
+				}
+				else if(document.CodeForm.phone_home3.value!=""&&validChar(document.CodeForm.phone_home3.value)){
+					document.CodeForm.phone_home3.value = "";
+					document.CodeForm.phone_home3.focus();
+					alert("電話分機不能有特殊符號");
+				}
+				else if(document.CodeForm.phone_mobile.value==""||validChar(document.CodeForm.phone_mobile.value)){
+					document.CodeForm.phone_mobile.value = "";
+					document.CodeForm.phone_mobile.focus();
+					alert("行動電話不能有特殊符號或空白");
+				}
+				else if(document.CodeForm.email.value==""||validChar2(document.CodeForm.email.value)){
+					document.CodeForm.email.value = "";
+					document.CodeForm.email.focus();
+					alert("電子信箱不能有特殊符號或空白");
+				}
+				else if(!emailCheck(document.CodeForm.email.value)){
+					document.CodeForm.email.value = "";
+					document.CodeForm.email.focus();
+					alert("請填寫正確的電子信箱");
+				}else if(document.CodeForm.valid_code.value==""||isNaN(document.CodeForm.valid_code.value)||!validReg.test(document.CodeForm.valid_code.value)){
+					document.CodeForm.valid_code.focus();
+					alert("請輸入六位數字驗證碼");
+				}
+				else{
+ 					document.CodeForm.status.value="submited";
+					document.CodeForm.submit();
+				}
+			}
+		}
+		
+		function validChar5(obj){
+			var specialChar = "`~@#$%^&*()-_+={}[]\|'\"<>/";
+			var rtnValue = false;
+			for(var i=0;i<obj.length;i++){
+				if(specialChar.indexOf(obj.charAt(i))!=-1){
+					rtnValue = true;
+				}
+			}
+			return rtnValue;
+		}
+		
+		//把原始字串中的特殊符號都換成全型
+		//會用到底下的function setCharAt(str,index,chr)
+		function changeToFullwidthForm(obj){
+			var halfwidth="`~!#$%^&*()-+=|\\[{}]:;'<>?,/\"";
+			var fullwidth="‵～！＃＄％︿＆＊（）－＋＝｜＼［｛｝］：；’＜＞？，／＂";
+			for(var j=0;j<obj.length;j++){
+				for(var i=0;i<halfwidth.length;i++){
+					if(obj.charAt(j)==halfwidth.charAt(i)){
+						obj=setCharAt(obj,j,fullwidth.charAt(i));
+					}
+				}
+			}
+			return obj;
+		}
+		//將一個字串中特定位置的文字置換成特定文字 setCharAt(原始字串,位置,特定文字)
+		function setCharAt(str,index,chr) {
+		    if(index > str.length-1) return str;
+		    return str.substring(0,index) + chr + str.substring(index+1);
+		}
+		
+		function validCharContent(obj){
+			var specialChar = "`~@#$^*()_+={}[]\|'\"<>/";
+			var rtnValue = false;
+			for(var i=0;i<obj.length;i++){
+				if(specialChar.indexOf(obj.charAt(i))!=-1){
+					rtnValue = true;
+				}
+			}
+			return rtnValue;
+		}
+		
+		function validChar6(obj){
+			var pattern = /[0-9]/;
+			var result = true;
+			for(i=0;i<obj.length;i++){
+				result = result && pattern.test(obj);
+			}
+			return result;
+		}
+		
+		function validChar7(obj,pattern,len){
+			var result = false;
+			var temp = pattern;
+			for(i=0;i<len;i++){
+				if(obj==temp){
+					result=true;
+					break;
+				}
+				temp += pattern;
+			}
+			return result;
+		}
+		
+		function validChar8(obj){
+			var pattern = /^[0]/;
+			var result =true;
+			for(i=0;i<obj.length;i++){
+				result = result && pattern.test(obj);
+			}
+			return result;
+		}
+		
+		function emailCheck(email){
+			i=email.indexOf("@");
+			j=email.indexOf(".",i);
+			k=email.indexOf(",");
+			kk=email.indexOf(" ");
+			jj=email.lastIndexOf(".") + 1;
+			len=email.length;
+			if((i<=0)||(j<=(1+1))||(k!=-1)||(kk!=-1)||(len-jj<2)||(len-jj>3)){
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+		
+		function formClear(){
+			document.CodeForm.reset();
+		}
+		
+		function checkID(){
+			var mid = document.CodeForm.member_id.value;
+			mid = mid.toLowerCase();
+			h = "abcdefghjklmnpqrstuvxywzio";//檢查身分證字號第一碼是不是英文
+			n = "1289";//2021年新住民身分證字號第二碼改成8或9
+			var mid1 = mid.substring(0,1);
+			var mid2 = mid.substring(1,2);
+			if(!validChar3(mid)){
+				alert("身分證字號只能含英數");
+				document.CodeForm.member_id.value = "";
+				document.CodeForm.member_id.focus();
+				return false;
+			}
+			else{
+				if(mid.length>=6&&mid.length<=11){
+					//十碼且第一碼為英文,第二碼為1 2 8 9:國人身分證
+					if(mid.length==10&&h.indexOf(mid1)!=-1&&n.indexOf(mid2)!=-1){
+						if(chkROCID(mid)){
+							return true;
+						}
+						else{
+							alert('身分證字號不正確');
+							document.CodeForm.member_id.value="";
+							document.CodeForm.member_id.focus();
+							return false;
+						}
+					}
+					else{
+						return true;
+					}
+				}
+				else{
+					alert('外國人護照號碼不正確');
+					document.CodeForm.member_id.value="";
+					document.CodeForm.member_id.focus();
+					return false;
+				}
+			}
+		}
+		
+		function chkROCID(num){
+			num = num.toLowerCase();
+			patten = /^[a-z][1289][0-9]{8}$/;
+			if(patten.test(num)){
+				h = "abcdefghjklmnpqrstuvxywzio";
+				x = 10+h.indexOf(num.substring(0,1));
+				chksum = (x-(x%10))/10+(x%10)*9;
+				for(j=1;j<9;j++){
+					chksum += num.substring(j,j+1)*(9-j);
+				}
+				chksum = (10-chksum%10)%10;
+				if(chksum==num.substring(9,10)){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			return false;
+		}
+		
+		function checkPhone(phone){
+			if(phone.length<6){
+				document.CodeForm.phone_home2.value = "";
+				document.CodeForm.phone_home2.focus();
+				alert("電話號碼不能小於七碼");
+			}
+			else{
+				var p = document.CodeForm.phone_home1.value;
+				if(p.length<2){
+					document.CodeForm.phone_home1.value="";
+					document.CodeForm.phone_home1.focus();
+					alert("電話區碼不能空白");
+				}
+			}
+		}
+		
+		function setCategory(){
+			var buCateobj = document.getElementById('buCate');
+			var buCateval = buCateobj.options[buCateobj.selectedIndex].value;
+			var questCategoryobj = document.getElementById('questCategory');
+			while(questCategoryobj.options.length!=1){
+				questCategoryobj.options.remove(1);
+			}
+			var varItem;
+			if(buCateval!=''){
+				var msg = getAjaxString('quest2.jsp','buCate='+buCateval);
+				var sa1 = msg.split("\r\r\r\n");
+				var sa2;
+				for(iIndex=0;iIndex<sa1.length;iIndex++){
+					if(sa1[iIndex]!=''){
+						sa2 = sa1[iIndex].split("\r\r\n");
+						varItem = new Option(sa2[1], sa2[0]);
+						questCategoryobj.options.add(varItem);
+					}
+				}
+			}
+		}
+		
+		function loadmemberdata(){
+			openWindows('/member/financialholdings/member/login.jsp?bu=F&quest=quest',610,460);
+			document.ff.tempBuCate.value = document.CodeForm.buCate.value;
+			document.ff.tempQuestCategory.value = document.CodeForm.questCategory.value;
+			document.ff.tempContent.value = document.CodeForm.content.value;
+			document.ff.submit();
+		}
+
+		function replaceString(s,s1,s2){
+			s = '' + s;
+			if(s.length==0||s1.length==0){
+				return s;
+			}
+			// process head
+			if(s.indexOf(s1)==0){
+				s = s2 + s.substr(s1.length,s.length-s1.length);
+			}
+			// process tail
+			if(s.lastIndexOf(s1)==s.length-s2.length){
+				s = s.substr(0,s.length-s1.length) + s2;
+			}
+			// process middle
+			var arrS = s.split(s1);
+			
+			if (arrS.length==1){
+				return s;
+			}
+			var result = "";
+			var nLen = arrS.length;
+			for(i=0;i<nLen;i++){
+				result += arrS [i];
+				if(i!=nLen-1){
+					result += s2;
+				}
+			}
+			return result;
+		}
+	</script>
+	<!-- Google Tag Manager -->
+<script>
+  (function(w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+      'gtm.start': new Date().getTime(),
+      event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MC6B4G3');
+</script>
+<!-- End Google Tag Manager -->
+</head>
+
+<body onload="start();">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC6B4G3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+	<form id="CodeForm" name="CodeForm" action="questAdd_valid.jsp" method="post">
+		<!-- ==================== l-body begin =================== -->
+		<div class="l-wrap">
+			<div class="l-header jHeader">
+  <h1>富邦金控</h1>
+  <div class="m-header">
+    <div class="m-header-main jHdMain">
+      <div class="m-header-logo">
+        <button class="m-header-main-ctrl-btn jMenuCtrlBtn" type="button"><i></i></button>
+        <a class="m-header-logo-anchor" href="/financialholdings/home/index.html">
+          <span>富邦金控</span>
+          <figure class="m-header-logo-img">
+            <img src="/financialholdings/Content/img/common/lazyload.png" data-src="/financialholdings/Content/img/home/logo.svg?de1873c7" class="lazy" alt="富邦金控 | 富邦金控" width="100%" height="100%">
+          </figure>
+        </a>
+      </div>
+      <!-- ==================== m-nav begin =================== -->
+      <div class="m-header-nav">
+  <nav>
+  <ul class="m-header-nav-fst jNav">
+    <li>
+      <button class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="about" type="button">
+        <h6>關於富邦金控</h6>
+        <i class="m-header-nav-icon-acc"></i>
+      </button>
+      <div class="m-header-nav-fst-item-body jNavFstBd">
+        <button type="button" class="m-header-nav-sec-ctrl-btn jNavSecCtrlBtn"></button>
+        <div class="m-header-nav-sec">
+          <div class="m-header-nav-sec-tit">
+            <em class="m-header-nav-sec-tit-ch">關於富邦金控</em>
+            <em class="m-header-nav-sec-tit-en">About us</em>
+          </div>
+          <div class="m-header-nav-sec-body">
+            <ul class="m-header-nav-sec-list jNavSec">
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/about/info.html">
+                  富邦金控簡介
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/about/team.html">
+                  經營委員會
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/about/sub.html">
+                  金控子公司成員
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/about/honor.html">
+                  專業殊榮
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/about/milestone.html">
+                  大事記
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+            </ul>
+            <span class="m-header-nav-sec-deco jNavSecDeco"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <button class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="story" type="button">
+        <h6>品牌故事</h6>
+        <i class="m-header-nav-icon-acc"></i>
+      </button>
+      <div class="m-header-nav-fst-item-body jNavFstBd">
+        <button type="button" class="m-header-nav-sec-ctrl-btn jNavSecCtrlBtn"></button>
+        <div class="m-header-nav-sec">
+          <div class="m-header-nav-sec-tit">
+            <em class="m-header-nav-sec-tit-ch">品牌故事</em>
+            <em class="m-header-nav-sec-tit-en">Brand Story</em>
+          </div>
+          <div class="m-header-nav-sec-body">
+            <ul class="m-header-nav-sec-list jNavSec">
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/story/future.html">
+                  品牌理念
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/story/identity.html">
+                  企業標誌
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/story/positive.html">
+                  <p>正向力量 成就可能<sup>TM</sup></p>
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="https://www.fubon.com/fubon60/story.html">
+                  60 週年紀念特刊
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="https://www.fubon.com/r4g/#r4g">
+                  <p>Run for Green<sup>TM</sup></p>
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/story/download/AnnualReport_CH.pdf">
+                  <p>2024富邦金控營運報告</p>
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+            </ul>
+            <span class="m-header-nav-sec-deco jNavSecDeco"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <button class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="esg" type="button">
+        <h6>永續發展</h6>
+        <i class="m-header-nav-icon-acc"></i>
+      </button>
+      <div class="m-header-nav-fst-item-body jNavFstBd">
+        <button type="button" class="m-header-nav-sec-ctrl-btn jNavSecCtrlBtn"></button>
+        <div class="m-header-nav-sec">
+          <div class="m-header-nav-sec-tit">
+            <em class="m-header-nav-sec-tit-ch">永續發展</em>
+            <em class="m-header-nav-sec-tit-en">ESG</em>
+          </div>
+          <div class="m-header-nav-sec-body">
+            <ul class="m-header-nav-sec-list jNavSec">
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  永續願景工程
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/esg_visioning.html">
+                        永續願景工程
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/chairmans_message/chairmans_message.html">
+                        董事長的話
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/low_carbon.html">
+                        低碳
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/digital.html">
+                        數位
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/motivate.html">
+                        激勵
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/influence.html">
+                        影響
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/esg_visioning/esg_influence.html">
+                        重大主題鑑別
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  永續績效與獲獎
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/sustainable_honors_and_recognition/annual_performance.html">
+                        年度績效成果
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/sustainable_honors_and_recognition/awards_on_responsible_finance.html">
+                        評比及獲獎
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/sustainable_practice/sustainable_operation.html">
+                  永續行動實踐
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/sustainable_practice/new_ESG_event.html">
+                  最新 ESG 消息
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  永續報告書下載
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/downloadlist/downloadlist_report.html">
+                        報告書下載
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/downloadlist/downloadlist_ESG.html">
+                        其他 ESG 資料
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  利害關係人溝通
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/stakeholders/stakeholders_important.html">
+                        重大性議題分析
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/stakeholders/stakeholders_way.html">
+                        利害關係人溝通管道
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/citizenship/stakeholders/stakeholders_frequency.html">
+                        利害關係人溝通頻率
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <span class="m-header-nav-sec-deco jNavSecDeco"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <button class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="governance" type="button">
+        <h6>公司治理</h6>
+        <i class="m-header-nav-icon-acc"></i>
+      </button>
+      <div class="m-header-nav-fst-item-body jNavFstBd">
+        <button type="button" class="m-header-nav-sec-ctrl-btn jNavSecCtrlBtn"></button>
+        <div class="m-header-nav-sec">
+          <div class="m-header-nav-sec-tit">
+            <em class="m-header-nav-sec-tit-ch">公司治理</em>
+            <em class="m-header-nav-sec-tit-en">Corporate Governance</em>
+          </div>
+          <div class="m-header-nav-sec-body">
+            <ul class="m-header-nav-sec-list jNavSec">
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/status.html">
+                  公司治理現況
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/framework.html">
+                  公司治理架構
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  股東會
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/letter.html">
+                        致股東報告書
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/announcement/announcement.html">
+                        法定揭露事項
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/shareholders.html">
+                        股東會資訊
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  董事會
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/board_of_directors.html">
+                        董事會成員
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/election.html">
+                        獨立董事選任資訊
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/resolutions.html">
+                        董事會重要決議
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+					
+
+
+<a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/governanceRegular/BoardPerformanceEvaluationResults_2024.pdf">
+
+
+
+                        董事會 (含功能性委員會) 績效評估
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+					
+
+
+<a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="https://mopsov.twse.com.tw/mops/web/t100sb07 ">
+
+
+
+                        董事會出席情形
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                     
+
+
+<a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="https://mopsov.twse.com.tw/mops/web/t100sb07">
+
+
+
+                        董事進修
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/committee.html">
+                  功能性委員會
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/organization.html">
+                  內部稽核組織及運作
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/regulation.html">
+                  公司重要章則
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/privacy_policy/privacy_2.html?mailto:shli.fhc@fubon.com">
+                  獨立董事信箱
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/appeal.html">
+                  申訴信箱
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/governance/intellectualProperty.html">
+                  智慧財產管理計畫及執行情況
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:;" class="m-header-nav-sub-anchor jNavSecItemAnchor">
+                  公司治理相關文件
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+                <div class="m-header-nav-sec-item-body jNavSecItemBd">
+                  <ul class="m-header-nav-thd">
+                    <li>
+                      <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/download/CG.pdf">
+                        公司治理運作情形
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/download/EMP.pdf">
+                        誠信經營運作情形
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/download/%E5%AF%8C%E9%82%A6%E9%87%91%E6%8E%A7%E9%A2%A8%E9%9A%AA%E7%AE%A1%E7%90%86%E7%B5%84%E7%B9%94%E5%8F%8A%E9%81%8B%E4%BD%9C.pdf">
+                        風險管理組織及運作
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/download/IndependentDirector-Audit-Accountant.pdf">
+                        獨立董事與稽核主管及會計師溝通情形
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>              
+					<li>
+                      <a class="m-header-nav-sub-anchor" target="_blank" rel="noopener" href="/financialholdings/governance/download/ISO_Certificate_of_Registration.pdf">
+                        各項ISO證書-富邦金控及子公司
+                        <i class="m-header-nav-icon-acc"></i>
+                        <i class="m-header-nav-icon-dir"></i>
+                      </a>
+                    </li>					
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <span class="m-header-nav-sec-deco jNavSecDeco"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="news" href="/Fubon_Portal/financialholdings/news/list.jsp">新聞中心</a>
+    </li>
+    <li>
+      <button class="m-header-nav-fst-item-anchor jNavItemAnchor" data-menu="hr" type="button">
+        <h6>人才招募</h6>
+        <i class="m-header-nav-icon-acc"></i>
+      </button>
+      <div class="m-header-nav-fst-item-body jNavFstBd">
+        <button type="button" class="m-header-nav-sec-ctrl-btn jNavSecCtrlBtn"></button>
+        <div class="m-header-nav-sec">
+          <div class="m-header-nav-sec-tit">
+            <em class="m-header-nav-sec-tit-ch">人才招募</em>
+            <em class="m-header-nav-sec-tit-en">Careers</em>
+          </div>
+          <div class="m-header-nav-sec-body">
+            <ul class="m-header-nav-sec-list jNavSec">
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/hr/jobs.html">
+                  焦點職缺與查詢
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/hr/development.html">
+                  職涯發展
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/hr/life.html">
+                  薪酬福利
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/hr/FAQ.html">
+                  甄選常見問題
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+              <li>
+                <a class="m-header-nav-sub-anchor" href="/financialholdings/hr/contact.html">
+                  與我們聯繫
+                  <i class="m-header-nav-icon-acc"></i>
+                  <i class="m-header-nav-icon-dir"></i>
+                </a>
+              </li>
+            </ul>
+            <span class="m-header-nav-sec-deco jNavSecDeco"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <span class="m-header-nav-fst-deco jNavFstDeco"></span>
+</nav>
+<div class="m-header-anchor">
+  <a href="https://fubon.irpro.co/tw/" target="_blank" >投資人關係</a>
+  <a href="/financialholdings/location/location.html" target="_blank" >據點查詢</a>
+</div>
+  <nav class="m-header-nav-members jMembers">
+  <div class="m-header-nav-members-body">
+    <button class="m-header-nav-members-btn jMemberCtrlBtn" type="button">
+      <p class="m-header-nav-members-btn-txt">金控成員</p>
+      <svg class="m-header-nav-members-btn-icon">
+        <use class="fill-current" xlink:href="#icon_isosceles_arrow"></use>
+      </svg>
+    </button>
+    <div class="m-header-nav-members-list jMembersWrap">
+      <ul class="m-header-nav-members-list-body">
+        <li><a href="https://www.fubon.com/life/" target="_blank">
+            <h6>富邦人壽</h6>
+          </a></li>
+        <li><a href="http://www.fubonlife.com.hk/life_hk/html/tc/index.html" target="_blank">
+            <h6>富邦人壽(香港)</h6>
+          </a></li>
+        <li><a href="http://www.fubonlife.com.vn/" target="_blank">
+            <h6>越南富邦人壽</h6>
+          </a></li>
+        <li><a href="https://www.fubonhyundai.com/" target="_blank">
+            <h6>富邦現代人壽</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/banking/personal/index.htm" target="_blank">
+            <h6>台北富邦銀行</h6>
+          </a></li>
+        <li><a href="http://www.fubonbank.com.hk/web/html/index_c.html" target="_blank">
+            <h6>富邦銀行(香港)</h6>
+          </a></li>
+        <li><a href="https://www.fubonchina.com/index.php" target="_blank">
+            <h6>大陸富邦華一銀行</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/insurance/home/index.htm" target="_blank">
+            <h6>富邦產險</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com.cn/" target="_blank" rel="noopener noreferrer">
+            <h6>大陸富邦財險</h6>
+          </a></li>
+        <li><a href="https://www.fubonins.com.vn/" target="_blank">
+            <h6>越南富邦產險</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/securities/home/index.htm" target="_blank">
+            <h6>富邦證券</h6>
+          </a></li>
+        <li><a href="https://www.fubonsec.com.hk" target="_blank">
+            <h6>富邦證券(香港)</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/vc/" target="_blank">
+            <h6>富邦金控創投</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/asset-management/index" target="_blank">
+            <h6>富邦投信</h6>
+          </a></li>
+        <li><a href="https://www.fubonfund.com.hk/" target="_blank">
+            <h6>富邦基金(香港)</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/futures/home/index.htm" target="_blank">
+            <h6>富邦期貨</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/investment-services/home/index.htm" target="_blank">
+            <h6>富邦投顧</h6>
+          </a></li>
+        <li><a href="https://www.fubon.com/direct/home/index.htm" target="_blank">
+            <h6>富邦綜合保代</h6>
+          </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+      <!-- ==================== m-nav end =================== -->
+      <ul class="m-header-tools">
+        <li class="m-header-lang"><a class="m-header-lang-txt" href="/financialholdings/en/home/index.html" target="_blank">EN</a></li>
+        <li>
+          <div class="m-header-search jSearchForm">
+            <button type="button" onclick='Value()' class="m-header-search-btn-m jSearchBtnM">
+              <svg class="m-header-search-btn-m-icon">
+                <use class="fill-current" xlink:href="#icon_search"></use>
+              </svg>
+            </button>
+            <div class="m-header-search-bd">
+              <button id='headerSearchbtn'type="button" onclick='Value()' class="m-header-search-btn jSearchBtn">
+                <svg class="m-header-search-btn-icon">
+                  <use class="fill-current" xlink:href="#icon_search"></use>
+                </svg>
+              </button>
+              <div class="m-header-search-inpt-wrap">
+                <input type="search" id='headerSearch' class="m-header-search-inpt jSearchInpt">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+			<!-- ==================== l-main begin =================== -->
+			<main class="l-main jMain" data-channel="service">
+            <div class="m-kv">
+				<div class="m-kv-bd">
+  <div class="m-loading --absolute jLoading">
+    <svg>
+      <use class="fill-current" xlink:href="#logo"></use>
+    </svg>
+  </div>
+  <figure class="m-kv-figure">
+    <img src="/financialholdings/Content/img/common/lazyload.png" data-src="/financialholdings/Content/img/service/kv.jpg?04df0822" class="lazy" alt="富邦金控 - 聯繫相關業務服務單位 | 富邦金控" width="100%" height="100%">
+  </figure>
+</div>
+				<!-- ==================== l-main-bd begin =================== -->
+				
+					<!-- ==================== l-content begin =================== -->
+					
+						<!-- ==================== m-breadcrumb begin =================== -->
+            <div class="m-kv-tools">
+            <div class="m-breadcrumb">
+              <ol>
+                <li class="m-breadcrumb-item">
+                  <a href="/financialholdings/service/sub_contact.html">
+                    <svg class="m-breadcrumb-home">
+                      <use class="fill-current" xlink:href="#home"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="m-breadcrumb-item">
+                  <em>服務中心</em>
+                </li>
+              </ol>
+            </div>
+          </div>
+		  </div>
+       
+						<!-- ==================== m-breadcrumb end =================== -->
+						
+						<div class="m-sub-menu jSubMenu">
+  <div class="m-sub-menu-hd">
+    <button type="button" class="m-sub-menu-ctrl jSubMenuCtrl">
+      <em class="jSubMenuTitle"></em>
+    </button>
+  </div>
+  <div class="m-sub-menu-bd">
+    <ul class="jSubMenuBd">
+      <li class="m-sub-menu-item jSubMenuItem" data-channel="service">
+        <a href="/financialholdings/service/sub_contact.html" class="m-sub-menu-btn jSubMenuLink">
+          <h6 class="m-sub-menu-btn-txt"><em>服務中心</em></h6>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+						<!-- ==================== m-section begin =================== -->
+			        <div class="m-cnt">
+						<section class="m-section">
+							<header class="m-section-hd b-clearfix">
+
+							<h2 class="!block">聯絡富邦證券</h2>
+								
+							</header>
+							
+							<div class="m-section-bd b-clearfix">
+								<div class="m-form-item">
+									<div class="m-form-item-hd">
+										<div class="m-form-group is-required">
+											
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left">為必填欄位</label>
+										</div>
+									</div>
+									<div class="m-form-item-bd">
+										
+										<div class="m-step">
+											<span class="m-step-title">
+												<i class="m-icon m-icon-number-1"></i>
+												<em class="b-h3">請先選擇您的問題類型</em>	
+											</span>
+										</div>
+										
+										<div class="m-form-group m-form-horizontal m-form-select is-required b-row ng-select">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">問題類型</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-6 b-col-sm-6 b-col-xs-6">
+													<label>
+														<select class="m-form m-form-control is-bgcolor" id='questCategory' name='questCategory'>
+															<option value="">請選擇</option>
+															<option value='33'>系統安裝問題</option>
+<option value='34'>系統連線或密碼問題</option>
+<option value='35'>下單交易問題</option>
+<option value='36'>憑證問題</option>
+<option value='38'>行銷及講座活動事宜</option>
+<option value='39'>其它建議事項</option>
+<option value='131'>股務相關問題</option>
+<option value='132'>申訴信箱</option>
+<option value='133'>表揚按讚</option>
+
+														</select>
+													</label>
+												</div>	
+											</div>
+										</div>
+										<div class="m-form-group m-form-horizontal is-required b-row">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">問題敘述</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-12 b-col-sm-12 b-col-xs-6">
+													<label>
+														<textarea class="m-form m-form-control" id="content1" name="content" style="font-size: 1em;" rows="3" cols="70" ></textarea>
+													</label>
+												</div>
+											</div>
+										</div>
+										
+										<div class="m-step">
+											<span class="m-step-title">
+												<i class="m-icon m-icon-number-2"></i>
+												<em class="b-h3">請填寫您的基本資料</em>
+											</span>
+										</div>
+										
+										<div class="m-form-group m-form-horizontal m-form-select is-required b-row ng-select">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">姓名</label>
+											<div class="m-form-ctrl-table b-col-md-5 b-col-sm-5 b-col-xs-6">
+												<div class="m-form-ctrl b-col-md-12 b-col-sm-12 b-col-xs-6">
+													<label>
+														<input type="text" class="m-form m-form-control" id="member_name" maxlength="20" name="member_name" value="">
+													</label>
+													<label>
+														<select class="m-form m-form-control is-bgcolor" id="sex" name="sex">
+															
+															<option value="M" selected="selected">先生</option>
+															<option value="F">小姐</option>
+															
+														</select>
+													</label>
+												</div>
+											</div>
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">行動電話</label>
+											<div class="m-form-ctrl-table b-col-md-3 b-col-sm-3 b-col-xs-6">
+												<div class="m-form-ctrl b-col-md-12 b-col-sm-12 b-col-xs-6">
+													<label>
+														<input id="MOBILE" maxlength="10" name="phone_mobile" value="" size="10" type="tel" class="m-form m-form-control" placeholder="EX : 0912345678">
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="m-form-group m-form-horizontal b-row is-required">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">E-mail</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-6 b-col-sm-6 b-col-xs-6">
+													<label>
+														<input name="email" size="36" maxlength="36" value="" type="email" class="m-form m-form-control">
+													</label>
+												</div>
+											</div>
+										</div>
+										
+										<div class="m-form-group m-form-horizontal m-form-select b-row ng-select"style="display:none">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">地址</label>
+											<div class="m-form-ctrl-table b-col-md-5 b-col-sm-5 b-col-xs-6">
+												<div class="m-form-ctrl b-col-md-12 b-col-sm-12 b-col-xs-6">
+													<label>
+														<select class="m-form m-form-control is-bgcolor" name="adr_country" id="adr_country" onchange="buildOptions(a_zipcode,1);document.cookie='adr_country='+this.value;document.cookie='adr_zip_code=';document.CodeForm.adr_zip_code.value=''">
+															<option value="">請選擇縣市</option>
+														</select>
+													</label>
+													<label>
+														<select class="m-form m-form-control is-bgcolor" name="adr_village" id="adr_village" onChange="setZipcode(this.value);">
+															<option value="">請選擇區域</option>
+														</select>
+													</label>
+													<label>
+														<input name="adr_zip_code" type="hidden" value="" size="5" maxlength="5" readonly>
+													</label>
+													<label>
+													</label>
+												</div>
+											</div>
+											<div class="m-form-ctrl-table b-col-md-5 b-col-sm-5 b-col-xs-6">
+												<div class="m-form-ctrl b-col-md-12 b-col-sm-12 b-col-xs-6 is-margin-top-xs">
+													<label>
+														<input class="m-form m-form-control" name="adr_address" type="text" value="" size="50" maxlength="120">
+													</label>
+												</div>
+											</div>
+										</div>
+										
+										
+										   
+										
+										<div class="m-form-group m-form-horizontal b-row ">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">身分證字號</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-6 b-col-sm-6 b-col-xs-6">
+													<label>
+														
+														<input id="member_id" maxlength="11" name="member_id" type="text" class="m-form m-form-control" >
+														
+														<input type="hidden" name="parentSno" value="">
+														<input type="hidden" name="buCate" value="S">
+														<input type="hidden" name="status" value="">
+													</label>
+												</div>
+												<span class="m-form-addon b-align-md-left b-align-sm-left b-align-xs-left">
+												(提供身分證字號可加速處理，但未提供亦不影響受理)
+													
+												</span>
+											</div>
+										</div>
+										
+										
+
+										<div class="m-form-group m-form-horizontal b-row">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">室內電話</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-6 b-col-sm-6 b-col-xs-4">
+													<label class="b-col-md-2 b-col-sm-2 b-col-xs-2">
+														<input name="phone_home1" value="" maxlength="3" type="tel" class="m-form m-form-control">
+													</label>
+													<label class="b-col-md-10 b-col-sm-10 b-col-xs-4">
+														<input name="phone_home2" value="" maxlength="10" type="tel" class="m-form m-form-control">
+													</label>
+												</div>
+												<div class="m-form-ctrl b-col-md-2 b-col-sm-2 b-col-xs-2">
+													<span class="m-form-addon b-col-md-4 b-col-sm-4 b-col-xs-2 b-align-md-center b-align-sm-center b-align-xs-center">分機</span>
+													<label class="b-col-md-8 b-col-sm-8 b-col-xs-4">
+														<input name="phone_home3" value="" maxlength="5" type="tel" class="m-form m-form-control">
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="m-form-group m-form-horizontal m-form-select b-row ng-select">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">聯絡時間</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-xs-6">
+													<label>
+													
+														<select id="contactTime" size="1" name="contactTime" class="m-form m-form-control is-bgcolor">
+															<option value="1" selected="selected">早上</option>
+															<option value="2">下午</option>
+															<option value="4">皆可</option>
+														</select>
+													
+														
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="m-form-group m-form-horizontal b-row is-required">
+											<label class="m-form-addon b-align-md-right b-align-sm-right b-align-xs-left b-col-md-2 b-col-sm-2 b-col-xs-6">驗證碼</label>
+											<div class="m-form-ctrl-table">
+												<div class="m-form-ctrl b-col-md-4 b-col-sm-4 b-col-xs-4">
+													<label>
+														<input type="text" class="m-form m-form-control" placeholder="請輸入驗證碼" autocomplete="off" name="valid_code" id="valid_code" maxlength="6">
+													</label>
+												</div>
+												<div class="b-col-md-2 b-col-sm-2 b-col-xs-2">
+													   <img src="/member/quest/randomPNG.jsp" id="randomPng" style="margin-top: 7px; margin-left: 5px">
+												</div>
+												<span id="valid_codeDiv" class="m-form-addon b-align-md-left b-align-sm-left b-align-xs-left">
+														<a class="b-link ng-forget-member" id="voiceBtn"><i class="m-icon m-icon-service" onclick="#"></i>語音播報驗證碼</a>
+												</span>
+												<span id="valid_codeDiv" class="m-form-addon b-align-md-left b-align-sm-left b-align-xs-left">
+														<a class="b-link ng-forget-member" id="randomPngBtn"><i class="m-icon m-icon-recycle" onclick="#"></i>重新產生驗證碼</a>
+												</span>
+											</div>
+										</div>
+										
+									</div>
+									<div class="m-form-item-ft">
+																			<p>為保護您的權益，請您務必詳細閱讀<a href="/financialholdings/privacy_policy/web2_privacy.html" class="b-link">Fubon.com</a>與各子公司個人資料保護聲明，
+											包含<a href="/banking/news/home/news_20140424_307968.htm" class="b-link" target="_blank">台北富邦銀行</a>
+											、<a href="/insurance/pipa/index.html" class="b-link" target="_blank">富邦產險</a>
+											、<a href="/life/statement/privacy/data-privacy/" class="b-link" target="_blank">富邦人壽</a>
+											、<a href="https://www.fbs.com.tw/Footer/SelfPolicy" class="b-link" target="_blank">富邦證券</a>
+											、<a href="https://www.fubon.com/asset-management/footer?type=inner_announce" class="b-link" target="_blank">富邦投信</a>
+											、<a href="/futures/home/account/e_open/privacy.html" class="b-link" target="_blank">富邦期貨</a>
+											、<a href="https://fubonresearch.fubon.com/Research/About/Data" class="b-link" target="_blank">富邦投顧</a>
+											、<a href="/insuranceagency/home/privacy.html" class="b-link" target="_blank">富邦綜合保代</a>
+											，當您登錄及填寫資料完成送出時，即視同您已充分了解並同意。</p>
+											
+										<div class="m-button-group b-align-md-center b-align-sm-center b-align-xs-center">
+											<button type="button" class="m-button b-primary b-lg" onclick="formSubmit();">確認送出</button>
+											<button type="button" class="m-button b-inverse b-lg" onclick="formClear();">清除重填</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</section>
+						<!-- ==================== m-section end =================== -->
+					</div>
+					<!-- ==================== l-content end =================== -->
+      
+				</main>
+				<!-- ==================== l-main-bd end =================== -->
+			
+			<!-- ==================== l-main end =================== -->
+			<div class="l-footer">
+  <footer class="m-footer">
+    <div class="m-footer-bd">
+  <ul class="m-footer-bd-list ng-webtrends-clk" wtr_sec="footer">
+    <li>
+      <a href="/financialholdings/hr/jobs.html">人才招募</a>
+    </li>
+    <li>
+      <a href="/financialholdings/announcement/announcement.html">法定揭露事項</a>
+    </li>
+    <li>
+      <a href="/financialholdings/location/location.html">海內外服務據點</a>
+    </li>
+    <li>
+      <a href="/financialholdings/privacy_policy/privacy.html">客戶資料保密措施</a>
+    </li>
+    <li>
+      <a href="/financialholdings/consumer_protection/consumer_protection.html">消費者保護</a>
+    </li>
+    <li>
+      <a href="/financialholdings/service/sub_contact.html">服務中心</a>
+    </li>
+    <li>
+      <a href="https://ep.fubon.com/" target="_blank" rel="noopener">採購專區</a>
+    </li>
+  </ul>
+</div>
+<div class="m-footer-ft">
+  <ul class="m-footer-ft-icons">
+    <li>
+      <a href="https://www.youtube.com/channel/UCgMjSf4JsGOJ1jQpf8uWURQ" target="_blank" rel="noopener">
+        <svg class="m-footer-ft-icon">
+          <use class="fill-current" xlink:href="#icon_yt"></use>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/FUBON" target="_blank" rel="noopener">
+        <svg class="m-footer-ft-icon">
+          <use class="fill-current" xlink:href="#icon_fb"></use>
+        </svg>
+      </a>
+    </li>
+  </ul>
+  <small class="m-footer-cw">
+    © 富邦金融控股股份有限公司<br><a href="https://www.fubon.com/financialholdings/announce/announce_1191111_455268.html">建議瀏覽器版本</a>：Microsoft Edge、Google Chrome、Firefox 以上最新版本
+  </small>
+</div>
+  </footer>
+</div>
+<!-- ==================== l-cookie begin =================== -->
+<div class="lCookie Pos_f">
+  <div class="mCookie PT_Fx-r PT_Ai-c">
+    <p class="PT_Fxg Fz-desc C-wh">本網站（及本公司）訂有「個人資料保護告知聲明」及「隱私權保護政策」(更多資訊請參閱<a href="/financialholdings/privacy_policy/web2_privacy.html" target="_blank"><span style="color: #ffffff !important;">「個人資料保護告知聲明」</span></a>及<a href="/financialholdings/privacy_policy/web_privacy.html" target="_blank"><span style="color: #ffffff !important;">「隱私權保護政策」</span></a>)，為提供更好的服務及優化網站，本網站使用 Cookies 記錄存取您的瀏覽訊息。當您繼續使用本網站，即表示您瞭解並同意本網站對於您個人資料以及其他資料（包含但不限於Cookies）的運用與政策。</p>
+    <div class="PT_Fxsh mCookieTls Ta-c">
+      <button type="button" class="mCookieBtn"><b class="Fz-desc C-major">同意</b></button>
+    </div>
+  </div>
+</div>
+<!-- ==================== l-cookie end =================== -->
+
+
+<!-- 14 -->
+
+		</div>
+		<!-- ==================== l-body end =================== -->
+
+	</form>
+<audio src="/member/quest/voice/begin.mp3" id="captchaBegin"></audio>
+<audio src="" id="captcha1"></audio>
+<audio src="" id="captcha2"></audio>
+<audio src="" id="captcha3"></audio>
+<audio src="" id="captcha4"></audio>
+<audio src="" id="captcha5"></audio>
+<audio src="" id="captcha6"></audio>
+<audio src="/member/quest/voice/end.mp3" id="captchaEnd"></audio>
+	
+</body>
+<!-- master page include scripts begin -->
+<script type="text/javascript" src="/financialholdings/Scripts/plugin/jquery/jquery.min.js?453152e7"></script>
+<script type="text/javascript" src="/financialholdings/Scripts/home/ctool.js?453152e7"></script>
+<script type="text/javascript" src="/financialholdings/Scripts/common.js?453152e7"></script>
+
+<!-- master page include scripts end -->
+
+<!-- self page include scripts begin -->
+<script src="/financialholdings/Scripts/service/sub_contact.js?22e2b119"></script>
+<!--
+<script type="text/javascript" src="/financialholdings/Scripts/plugin/sugarfunbox/js/sugarfunbox.js?JS=20150630_01"></script>
+<script type="text/javascript" src="/financialholdings/Scripts/js/service/common.js?JS=20150630_01"></script>
+-->
+<!-- self page include scripts end -->
+</html>
+
+
+<script language="javaScript">
+// 把網頁讀取完才能執行的程式包成一包
+$(document).ready(initQuest);
+function initQuest(){
+	setTimeout(timeoutAlert, 7200000);
+//在"重新產生驗證碼"上，掛上更新驗證碼
+	$("#randomPngBtn").click(changeRandomPng);
+//在"語音播報驗證碼"，掛上播報驗證碼
+	$("#voiceBtn").click(voiceCaptcha);
+//滑鼠移到"重新產生驗證碼"、"語音播報驗證碼"時變成可點及狀態
+	$("#randomPngBtn").css("cursor","pointer");
+	$("#voiceBtn").css("cursor","pointer");
+//把所有語音都藏起來
+	$("audio").hide();
+//在撥放結束事件掛載撥放下一個語音檔
+	document.getElementById("captchaBegin").addEventListener("ended",voice1);
+	document.getElementById("captcha1").addEventListener("ended",voice2);
+	document.getElementById("captcha2").addEventListener("ended",voice3);
+	document.getElementById("captcha3").addEventListener("ended",voice4);
+	document.getElementById("captcha4").addEventListener("ended",voice5);
+	document.getElementById("captcha5").addEventListener("ended",voice6);
+	document.getElementById("captcha6").addEventListener("ended",voiceEnd);
+	$("#questCategory").change(add_placeholder);
+//取得Query String變更問題類型
+	let queryStrings = new URLSearchParams(document.location.search);
+	if(queryStrings.get("source")!=null){
+		$("#questCategory").val(queryStrings.get("source"));
+	}
+}
+//更新驗證碼
+function changeRandomPng() {
+	$("#randomPng").attr("src", "/member/quest/randomPNG.jsp?" + Math.random());
+}
+//播報驗證碼
+function voiceCaptcha(){
+//以ajax非同步請求取得驗證碼對應語音檔檔名
+	$.ajax({
+		url:"/member/quest/voice/voiceCaptcha.jsp?"+Math.random(),
+		method:"get"
+	}).done(voiceBegin);
+}
+//更換語音檔的SRC，並且撥放語音開頭
+function voiceBegin(result) {
+	$("#captcha1").attr( "src","/member/quest/voice/"+ result.a );
+	$("#captcha2").attr( "src","/member/quest/voice/"+ result.b );
+	$("#captcha3").attr( "src","/member/quest/voice/"+ result.c );
+	$("#captcha4").attr( "src","/member/quest/voice/"+ result.d );
+	$("#captcha5").attr( "src","/member/quest/voice/"+ result.e );
+	$("#captcha6").attr( "src","/member/quest/voice/"+ result.f );
+	$("#captchaBegin")[0].play();
+}
+//撥放第一個驗證碼
+function voice1(){
+	$("#captcha1")[0].play();
+}
+//撥放第二個驗證碼
+function voice2(){
+	$("#captcha2")[0].play();
+}
+//撥放第三個驗證碼
+function voice3(){
+	$("#captcha3")[0].play();
+}
+//撥放第四個驗證碼
+function voice4(){
+	$("#captcha4")[0].play();
+}
+//撥放第五個驗證碼
+function voice5(){
+	$("#captcha5")[0].play();
+}
+//撥放第六個驗證碼
+function voice6(){
+	$("#captcha6")[0].play();
+}
+//撥放語音結尾
+function voiceEnd(){
+	$("#captchaEnd")[0].play();
+}
+
+function timeoutAlert() {
+	location.href = "/financialholdings/service/contact.html";
+}
+function add_placeholder() {
+	var qCategory=$(this).val();
+	if (qCategory!=124){
+		$("#content1").attr("placeholder","");
+	}else{
+		$("#content1").attr("placeholder","提醒您：更改完成後，其名下所有保單皆將變更成電子保單");
+	}
+}
+</script>
