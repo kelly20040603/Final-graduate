@@ -1,77 +1,171 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  
-  <title>聯絡我們-AI智能期權交易助手</title>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>聯絡我們-AI智能期權交易助手</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+            display: flex;
+            flex-direction: column;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        }
+        textarea {
+            resize: vertical;
+        }
+        .captcha-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .captcha-box input {
+            flex: 1;
+        }
+        #captchaImg {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            height: 44px;
+            width: 150px; /* 為了排版一致性，設定固定寬度 */
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>聯絡我們</h1>
-  <form id="contactForm">
-    <label>姓名（必填）
-      <input type="text" id="name" required>
-    </label>
+    <div class="form-container">
+        <h1>聯絡我們</h1>
+        <form id="contactForm">
+            <label>姓名（必填）
+                <input type="text" id="name" required>
+            </label>
 
-    <label>縣市（必填）
-      <select id="city" required>
-        <option value="">請選擇縣市</option>
-      </select>
-    </label>
+            <label>縣市（必填）
+                <select id="city" required>
+                    <option value="">請選擇縣市</option>
+                </select>
+            </label>
 
-    <label>鄉鎮市區（必填）
-      <select id="district" required>
-        <option value="">請先選擇縣市</option>
-      </select>
-    </label>
+            <label>鄉鎮市區（必填）
+                <select id="district" required>
+                    <option value="">請先選擇縣市</option>
+                </select>
+            </label>
 
-    <label>地址（必填）
-      <input type="text" id="address" required>
-    </label>
+            <label>地址（必填）
+                <input type="text" id="address" required>
+            </label>
 
-    <label>市話（例：02-12345678，可留空）
-      <input type="text" id="tel">
-    </label>
+            <label>市話（例：02-12345678，可留空）
+                <input type="text" id="tel">
+            </label>
 
-    <label>手機（例：09XXXXXXXX，必填）
-      <input type="text" id="mobile" required>
-    </label>
+            <label>手機（例：09XXXXXXXX，必填）
+                <input type="text" id="mobile" required>
+            </label>
 
-    <label>Email（必填）
-      <input type="email" id="email" required>
-    </label>
+            <label>Email（必填）
+                <input type="email" id="email" required>
+            </label>
 
-    <label>問題類型（必填）
-      <select id="issueType" required>
-        <option value="">請選擇</option>
-        <option>帳號問題</option>
-        <option>付款問題</option>
-        <option>技術支援</option>
-        <option>其他</option>
-      </select>
-    </label>
+            <label>問題類型（必填）
+                <select id="issueType" required>
+                    <option value="">請選擇</option>
+                    <option>帳號問題</option>
+                    <option>付款問題</option>
+                    <option>技術支援</option>
+                    <option>其他</option>
+                </select>
+            </label>
 
-    <label>問題描述（必填）
-      <textarea id="message" rows="5" required></textarea>
-    </label>
+            <label>問題描述（必填）
+                <textarea id="message" rows="5" required></textarea>
+            </label>
 
-    <!-- 驗證碼 -->
-    <label>驗證碼（必填）
-      <div class="captcha-box">
-        <input type="text" id="captcha" placeholder="請輸入驗證碼" required>
-        <img id="captchaImg" alt="驗證碼" title="點擊重新產生">
-      </div>
-    </label>
+            <label>驗證碼（必填）
+                <div class="captcha-box">
+                    <input type="text" id="captcha" placeholder="請輸入驗證碼" required>
+                    <img id="captchaImg" alt="驗證碼" title="點擊重新產生">
+                </div>
+            </label>
 
-    <div id="errorMessages" class="error"></div>
-    <button type="submit">送出</button>
-  </form>
+            <div id="errorMessages" class="error hidden"></div>
+            <button type="submit">送出</button>
+        </form>
+    </div>
 
-  <!-- JS -->
-  <script src="contact.js"></script>
+    <script src="contact.js"></script>
 </body>
 </html>
