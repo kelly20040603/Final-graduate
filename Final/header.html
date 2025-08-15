@@ -343,7 +343,9 @@
 
 
 <button id="sui-widget-btn" class=""></button>
-<button id="sui-webchat-btn" title="AI智能客服"></button>
+<button id="sui-webchat-btn"></button>
+<button id="sui-webchat-btn"></button>
+<span id="sui-webchat-label">AI智能客服</span>
 <iframe id="sui-webchat" src=https://chat.seasalt.ai/chat/9d710d0fcab74635b74318448edaf896></iframe>
 
 
@@ -506,6 +508,17 @@
     background:#fff;
     z-index: 9998;
   }
+  #sui-webchat-label {
+  position: fixed;
+  bottom: 76px; 
+  right: 10px;
+  background-color: #19b9c3;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 9998;
+}
   @media only screen and (max-width: 460px) {
     #sui-widget-btn {
       display: block;
