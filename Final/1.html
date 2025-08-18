@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>完整社群聊天室 UI</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+body { background:#f8f9fa; font-family:Arial, sans-serif; }
+.container-flex { display:flex; max-width:1200px; margin:20px auto; height:90vh; border:1px solid #dee2e6; border-radius:10px; background:#fff; }
+.sidebar { width:300px; border-right:1px solid #dee2e6; overflow-y:auto; padding:15px; }
+.section { margin-bottom:20px; }
+.section h6 { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.item { padding:5px; cursor:pointer; border-radius:5px; margin-bottom:5px; display:flex; align-items:center; justify-content:space-between; }
+.item:hover { background:#f1f1f1; }
+.item.active { background:#0d6efd; color:#fff; }
+.badge-small { font-size:0.7rem; }
+.chat-container { flex:1; display:flex; flex-direction:column; position:relative; }
+.chat-area { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.chat-messages { flex:1; overflow-y:auto; padding:20px; background:#f8f9fa; }
+.chat-message { margin-bottom:15px; display:flex; align-items:flex-start; }
+.chat-message img { width:40px;height:40px;border-radius:50%;margin-right:10px; }
+.chat-bubble { background-color:#e9ecef;border-radius:15px;padding:10px 15px; max-width:70%; }
+.chat-time { font-size:0.75rem;color:#6c757d; }
+.chat-input { padding:15px; border-top:1px solid #dee2e6; display:flex; }
+.chat-input textarea { flex:1; resize:none; }
+#resizeBar { height:5px; cursor:row-resize; background:#dee2e6; }
+</style>
+</head>
+<body>
+
+<div class="container-flex">
+  <!-- 側邊欄 -->
+  <div class="sidebar">
+    <div class="section">
+      <h6>聊天室 <span id="room-notif" class="badge bg-danger badge-small" style="display:none;">!</span></h6>
+      <div id="rooms-list"></div>
+      <button class="btn btn-sm btn-warning mt-1 w-100" onclick="createGroupChat()">建立群組</button>
+    </div>
+    <div class="section">
+      <h6>好友列表</h6>
+      <div id="friends-list"></div>
+    </div>
+    <div class="section">
+      <h6>好友請求 <span id="friend-req-notif" class="badge bg-danger badge-small" style="display:none;">!</span></h6>
+      <div id="friend-requests"></div>
+    </div>
+  </div>
+
+  <!-- 聊天區 -->
+  <div class="chat-container">
+    <div class="chat-area" id="chatArea">
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input">
+        <textarea class="form-control me-2" rows="1" placeholder="輸入訊息..." id="messageInput"></textarea>
+        <button class="btn btn-primary" id="sendBtn">送出</button>
+      </div>
+    </div>
+    <div id="resizeBar"></div>
+  </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+const token = localStorage.getItem('token');
+if(!token){ alert('請先登入！'); window.location.href='/login.html'; }
+
+const socket = io({ auth:{ token } });
+let currentRoom = null;
+let roomNotifications = {}; 
+let userId = parseInt(localStorage.getItem('userId')); // 後端需提供登入使用者 ID
+
+// DOM
+const roomsList = document.getElementById('rooms-list');
+const chatMessages = document.getElementById('chat-messages');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const friendsList = document.getElementById('friends-list');
+const friendRequestsDiv = document.getElementById('friend-requests');
+const friendReqNotif = document.getElementById('friend-req-notif');
+const roomNotif = document.getElementById('room-notif');
+
+// ---------------- 房間 ----------------
+async function loadRooms(){
+  const res = await fetch('/api/rooms',{ headers:{ 'Authorization':'Bearer '+token }});
+  const rooms = await res.json();
+  renderRooms(rooms);
+  if(rooms.length>0 && !currentRoom) switchRoom(rooms[0]);
+}
+
+function renderRooms(rooms){
+  roomsList.innerHTML='';
+  rooms.forEach(room=>{
+    const div=document.createElement('div');
+    div.className='item'+(currentRoom&&currentRoom.id===room.id?' active':'');
+    div.innerHTML=`<span>${room.name||'私人聊天室'}</span>` + (roomNotifications[room.id]?'<span class="badge bg-danger badge-small">!</span>':'');
+    div.onclick=()=>switchRoom(room);
+    roomsList.appendChild(div);
+  });
+}
+
+async function switchRoom(room){
+  if(currentRoom) socket.emit('leave_room', currentRoom.id);
+  currentRoom = room;
+  roomNotifications[room.id]=false;
+  renderRooms(await getRooms());
+  chatMessages.innerHTML='';
+  socket.emit('join_room', room.id);
+
+  const res = await fetch(`/api/rooms/${room.id}/messages`, { headers:{ 'Authorization':'Bearer '+token }});
+  const messages = await res.json();
+  messages.forEach(msg=>addMessage(msg, msg.read_by.includes(userId)));
+  updateRoomNotif();
+}
+
+function addMessage(msg, isRead=false){
+  const div=document.createElement('div');
+  div.className='chat-message';
+  div.dataset.messageId = msg.id;
+  div.innerHTML=`
+    <img src="${msg.sender.avatar||'https://i.pravatar.cc/40'}">
+    <div>
+      <strong>${msg.sender.name}</strong>
+      <div class="chat-bubble">${msg.content}</div>
+      <div class="chat-time">${new Date(msg.timestamp).toLocaleString()} ${isRead?'<span style="color:green;">✓已讀</span>':''}</div>
+    </div>`;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+}
+
+async function getRooms(){
+  const res = await fetch('/api/rooms',{ headers:{ 'Authorization':'Bearer '+token }});
+  return await res.json();
+}
+
+// ---------------- 發送訊息 ----------------
+sendBtn.addEventListener('click', ()=>{
+  const text = messageInput.value.trim();
+  if(text && currentRoom){
+    socket.emit('chat_message',{ roomId:currentRoom.id, content:text });
+    messageInput.value='';
+  }
+});
+
+socket.on('chat_message', msg=>{
+  if(currentRoom && msg.roomId===currentRoom.id){
+    addMessage(msg, msg.read_by.includes(userId));
+    socket.emit('message_read', { roomId: msg.roomId, messageId: msg.id });
+  } else {
+    roomNotifications[msg.roomId]=true;
+    updateRoomNotif();
+  }
+});
+
+// ---------------- 好友列表 ----------------
+async function loadFriends(){
+  const res = await fetch('/api/friends',{ headers:{ 'Authorization':'Bearer '+token }});
+  const friends = await res.json();
+  renderFriends(friends);
+}
+
+function renderFriends(friends){
+  friendsList.innerHTML='';
+  friends.forEach(f=>{
+    const div=document.createElement('div');
+    div.className='item';
+    div.innerHTML=`<img src="${f.avatar||'https://i.pravatar.cc/30'}" style="width:30px;height:30px;border-radius:50%;margin-right:5px;"> ${f.name}`;
+    div.onclick=()=>openPrivateChat(f.id,f.name);
+    friendsList.appendChild(div);
+  });
+}
+
+async function openPrivateChat(targetUserId,targetName){
+  const res = await fetch('/api/rooms/private',{
+    method:'POST',
+    headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+token },
+    body:JSON.stringify({ targetUserId })
+  });
+  const data = await res.json();
+  switchRoom({ id:data.roomId, name:targetName, is_group:false });
+  await loadRooms();
+}
+
+// ---------------- 好友請求 ----------------
+async function loadFriendRequests(){
+  const res = await fetch('/api/friends/requests',{ headers:{ 'Authorization':'Bearer '+token }});
+  const requests = await res.json();
+  renderFriendRequests(requests);
+  friendReqNotif.style.display = requests.length>0?'inline-block':'none';
+}
+
+function renderFriendRequests(requests){
+  friendRequestsDiv.innerHTML='';
+  requests.forEach(req=>{
+    const div=document.createElement('div');
+    div.className='item';
+    div.innerHTML=`
+      <img src="${req.sender_avatar||'https://i.pravatar.cc/30'}" style="width:30px;height:30px;border-radius:50%;margin-right:5px;">
+      ${req.sender_name}
+      <button class="btn btn-success btn-small ms-2">接受</button>
+      <button class="btn btn-danger btn-small ms-1">拒絕</button>
+    `;
+    div.querySelector('.btn-success').onclick=()=>respondFriendRequest(req.id,'accept');
+    div.querySelector('.btn-danger').onclick=()=>respondFriendRequest(req.id,'reject');
+    friendRequestsDiv.appendChild(div);
+  });
+}
+
+async function respondFriendRequest(requestId,action){
+  await fetch('/api/friends/respond',{
+    method:'POST',
+    headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+token },
+    body:JSON.stringify({ requestId, action })
+  });
+  await loadFriendRequests();
+  await loadFriends();
+}
+
+// ---------------- 群組聊天室 ----------------
+async function createGroupChat(){
+  const name=prompt('輸入群組名稱:');
+  if(!name) return;
+  const memberIds=prompt('輸入成員ID，用逗號分隔:').split(',').map(id=>parseInt(id.trim()));
+  const res = await fetch('/api/rooms/group',{
+    method:'POST',
+    headers:{ 'Content-Type':'application/json','Authorization':'Bearer '+token },
+    body:JSON.stringify({ name, memberIds })
+  });
+  const data=await res.json();
+  switchRoom({ id:data.roomId, name, is_group:true });
+  await loadRooms();
+}
+
+// ---------------- 通知更新 ----------------
+function updateRoomNotif(){
+  const anyNotif = Object.values(roomNotifications).some(v=>v);
+  roomNotif.style.display = anyNotif?'inline-block':'none';
+  renderRooms(Object.keys(roomNotifications).map(id=>({id, name:'聊天室 '+id})));
+}
+
+// ---------------- 拖拉調整高度 ----------------
+const chatArea = document.getElementById('chatArea');
+const resizeBar = document.getElementById('resizeBar');
+let isResizing = false;
+
+resizeBar.addEventListener('mousedown', e => {
+  isResizing = true;
+  document.body.style.cursor = 'row-resize';
+});
+document.addEventListener('mousemove', e => {
+  if(!isResizing) return;
+  const containerTop = chatArea.getBoundingClientRect().top;
+  const newHeight = e.clientY - containerTop;
+  chatArea.style.flex = 'none';
+  chatArea.style.height = newHeight + 'px';
+});
+document.addEventListener('mouseup', e => {
+  if(isResizing) {
+    isResizing = false;
+    document.body.style.cursor = 'default';
+  }
+});
+
+// ---------------- 初始化 ----------------
+loadRooms();
+loadFriends();
+loadFriendRequests();
+</script>
+
+</body>
+</html>
