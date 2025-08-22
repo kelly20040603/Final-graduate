@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>社群聊天-AI智能期權交易助手</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .hover\:shadow-xl:hover {
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    }
+    .hover\:shadow-xl:hover { box-shadow: 0 8px 16px rgba(0,0,0,.1); }
+    .active-topic { border-color:#2563eb; background:#eff6ff; }
+    .pop { transform: scale(1.12); transition: transform 120ms ease; }
   </style>
 </head>
 <body class="bg-gray-100">
-
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900 mb-2">社群聊天</h1>
@@ -20,31 +19,30 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-      <!-- Topics Sidebar -->
-      <div class="lg:col-span-1">
+      <!-- Sidebar -->
+      <aside class="lg:col-span-1">
         <div class="bg-white rounded-xl shadow-lg p-6">
           <h2 class="text-lg font-semibold text-gray-900 mb-4">討論主題</h2>
-          <div class="space-y-2">
-            <!-- Topic buttons -->
-            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+          <div id="topicButtons" class="space-y-2">
+            <button data-topic="all" class="topic-btn w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent active-topic">
               <span class="font-medium text-gray-900">全部討論</span>
-              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">156</span>
+              <span id="badge-all" class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">0</span>
             </button>
-            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+            <button data-topic="futures" class="topic-btn w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
               <span class="font-medium text-gray-900">期貨交易</span>
-              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">45</span>
+              <span id="badge-futures" class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">0</span>
             </button>
-            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+            <button data-topic="options" class="topic-btn w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
               <span class="font-medium text-gray-900">選擇權策略</span>
-              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">38</span>
+              <span id="badge-options" class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">0</span>
             </button>
-            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+            <button data-topic="analysis" class="topic-btn w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
               <span class="font-medium text-gray-900">技術分析</span>
-              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">29</span>
+              <span id="badge-analysis" class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">0</span>
             </button>
-            <button class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
+            <button data-topic="market" class="topic-btn w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 border-2 border-transparent">
               <span class="font-medium text-gray-900">市場動態</span>
-              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">44</span>
+              <span id="badge-market" class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">0</span>
             </button>
           </div>
 
@@ -57,115 +55,292 @@
             <p class="text-sm text-blue-700">位交易者正在討論</p>
           </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- Discussion Content -->
-      <div class="lg:col-span-3">
+      <!-- Main -->
+      <main class="lg:col-span-3">
         <!-- New Post -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+        <section class="bg-white rounded-xl shadow-lg p-6 mb-6">
           <div class="flex items-center space-x-3 mb-4">
             <span class="h-5 w-5 text-blue-600">💬</span>
             <h3 class="text-lg font-semibold text-gray-900">發表新討論</h3>
           </div>
-          <div class="flex space-x-4">
-            <textarea
-              placeholder="分享您的市場觀點或交易心得..."
-              class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              rows="3"
-            ></textarea>
-            <button
-              class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-            >
-              <span class="h-4 w-4">✉️</span>
-              <span>發送</span>
-            </button>
+          <div class="flex flex-col space-y-4">
+            <input id="newTitle" type="text" placeholder="請輸入標題"
+             class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+            <textarea id="newPost" rows="3" placeholder="分享您的市場觀點或交易心得..."
+              class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"></textarea>
+            <div class="flex items-center gap-3">
+              <select id="topicSelect" class="flex-1 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                <option value="futures">期貨交易</option>
+                <option value="options">選擇權策略</option>
+                <option value="analysis">技術分析</option>
+                <option value="market">市場動態</option>
+              </select>
+              <button id="sendBtn"
+                class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                <span class="h-4 w-4">✉️</span><span>發送</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
 
         <!-- Discussions -->
-        <div class="space-y-4">
-          <!-- Discussion 1 -->
-          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div class="flex items-start space-x-4">
-              <img
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
-                alt="交易達人"
-                class="w-12 h-12 rounded-full object-cover"
-              />
-              <div class="flex-1">
-                <div class="flex items-center space-x-2 mb-2">
-                  <h3 class="text-lg font-semibold text-gray-900">台指期貨今日走勢分析</h3>
-                  <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">熱門</span>
-                </div>
-                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                  <div class="flex items-center space-x-1">
-                    <span class="h-4 w-4">👤</span>
-                    <span>交易達人</span>
-                  </div>
-                  <div class="flex items-center space-x-1">
-                    <span class="h-4 w-4">⏰</span>
-                    <span>2小時前</span>
-                  </div>
-                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full">期貨交易</span>
-                </div>
-                <p class="text-gray-700 mb-4">根據技術指標分析，台指期貨今日可能出現震盪整理的走勢...</p>
-                <div class="flex items-center space-x-6">
-                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-                    <span class="h-4 w-4">👍</span>
-                    <span>25</span>
-                  </button>
-                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-                    <span class="h-4 w-4">💬</span>
-                    <span>12 回覆</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Discussion 2 -->
-          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div class="flex items-start space-x-4">
-              <img
-                src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
-                alt="期權新手"
-                class="w-12 h-12 rounded-full object-cover"
-              />
-              <div class="flex-1">
-                <div class="flex items-center space-x-2 mb-2">
-                  <h3 class="text-lg font-semibold text-gray-900">選擇權買權策略討論</h3>
-                </div>
-                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                  <div class="flex items-center space-x-1">
-                    <span class="h-4 w-4">👤</span>
-                    <span>期權新手</span>
-                  </div>
-                  <div class="flex items-center space-x-1">
-                    <span class="h-4 w-4">⏰</span>
-                    <span>4小時前</span>
-                  </div>
-                  <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full">選擇權策略</span>
-                </div>
-                <p class="text-gray-700 mb-4">想請教各位前輩關於買權的時機判斷...</p>
-                <div class="flex items-center space-x-6">
-                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-                    <span class="h-4 w-4">👍</span>
-                    <span>15</span>
-                  </button>
-                  <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-                    <span class="h-4 w-4">💬</span>
-                    <span>8 回覆</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- More discussions can be added similarly -->
-        </div>
-      </div>
+        <section id="discussions" class="space-y-4"></section>
+      </main>
     </div>
   </div>
 
+  <script>
+    /** ========= 資料模型（之後可改由 API or WebSocket 注入） ========= **/
+    let posts = [
+      {
+        id: "p1",
+        topic: "futures",
+        title: "台指期貨今日走勢分析",
+        author: "交易達人",
+        avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        createdAgo: "2025/01/11 下午01:01",
+        tagText: "期貨交易",
+        content: "根據技術指標分析，台指期貨今日可能出現震盪整理的走勢...",
+        likes: 25,
+        replies: 12,
+        hot: true
+      },
+      {
+        id: "p2",
+        topic: "options",
+        title: "選擇權買權策略討論",
+        author: "期權新手",
+        avatar: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+        createdAgo: "2025/02/22 下午02:02",
+        tagText: "選擇權策略",
+        content: "想請教各位前輩關於買權的時機判斷...",
+        likes: 15,
+        replies: 8,
+        hot: false
+      }
+    ];
+    const topicMap = {
+      futures: "期貨交易",
+      options: "選擇權策略",
+      analysis: "技術分析",
+      market: "市場動態"
+    };
+
+    /** ========= DOM 參考 ========= **/
+    const discussionsEl = document.getElementById("discussions");
+    const topicButtons = document.querySelectorAll(".topic-btn");
+    const newPostEl = document.getElementById("newPost");
+    const topicSelectEl = document.getElementById("topicSelect");
+    const sendBtnEl = document.getElementById("sendBtn");
+
+    /** ========= 工具 ========= **/
+    function uid() { return 'p' + Math.random().toString(36).slice(2, 9); }
+    function nowTime() {
+      const d = new Date();
+      return d.toLocaleTimeString("zh-TW", { hour: "2-digit", minute: "2-digit" });
+    }
+    function addPop(el) {
+      el.classList.add("pop");
+      setTimeout(() => el.classList.remove("pop"), 140);
+    }
+
+    /** ========= 渲染 ========= **/
+    let currentTopic = "all";
+
+    function renderSidebarCounts() {
+      const counts = { all: posts.length, futures: 0, options: 0, analysis: 0, market: 0 };
+      posts.forEach(p => counts[p.topic]++);
+      for (const k of Object.keys(counts)) {
+        const badge = document.getElementById(`badge-${k}`);
+        if (badge) badge.textContent = counts[k];
+      }
+    }
+
+    function postCardTemplate(p) {
+      return `
+      <div class="discussion bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow" data-id="${p.id}" data-topic="${p.topic}">
+        <div class="flex items-start space-x-4">
+          <img src="${p.avatar}" alt="${p.author}" class="w-12 h-12 rounded-full object-cover"/>
+          <div class="flex-1">
+            <div class="flex items-center space-x-2 mb-2">
+              <h3 class="text-lg font-semibold text-gray-900">${p.title}</h3>
+              ${p.hot ? `<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">熱門</span>` : ``}
+            </div>
+            <div class="flex items-center space-x-4 text-sm text-gray-500 mb-3">
+              <div class="flex items-center space-x-1">
+                <span class="h-4 w-4">👤</span><span>${p.author}</span>
+              </div>
+              <div class="flex items-center space-x-1">
+                <span class="h-4 w-4">⏰</span><span>${p.createdAgo}</span>
+              </div>
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full">${topicMap[p.topic] || p.topic}</span>
+            </div>
+            <p class="text-gray-700 mb-4 whitespace-pre-line">${p.content}</p>
+            <div class="flex items-center space-x-6">
+              <button data-action="like" class="like-btn flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors transform">
+                <span class="h-4 w-4">👍</span>
+                <span class="like-count">${p.likes}</span>
+              </button>
+              <button data-action="reply" class="reply-btn flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors transform">
+                <span class="h-4 w-4">💬</span>
+                <span class="reply-count">${p.replies} 回覆</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function nowTime() {
+    const d = new Date();
+    return d.toLocaleString("zh-TW", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+    }
+
+    function renderList() {
+      const list = (currentTopic === "all") ? posts : posts.filter(p => p.topic === currentTopic);
+      discussionsEl.innerHTML = list.map(postCardTemplate).join("");
+    }
+
+    function rerenderAll() {
+      renderSidebarCounts();
+      renderList();
+    }
+
+    /** ========= 事件：主題切換 ========= **/
+    topicButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        topicButtons.forEach(b => b.classList.remove("active-topic"));
+        btn.classList.add("active-topic");
+        currentTopic = btn.getAttribute("data-topic");
+        renderList();
+      });
+    });
+
+    /** ========= 事件：發文（動態新增 + 重新計數） ========= **/
+    const nicknames = ["交易小白", "老司機", "期貨大師", "選擇權高手", "技術派"];
+    const avatars = [
+      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+      "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop",
+      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop"
+    ];
+
+    sendBtnEl.addEventListener("click", () => {
+    const titleInput = document.getElementById("newTitle").value.trim();
+    const content = newPostEl.value.trim();
+    const topic = topicSelectEl.value;
+    if (!content) return alert("請輸入內容！");
+
+    const title = titleInput || (content.length > 20 ? content.slice(0, 20) + "..." : content);
+    const p = {
+        id: uid(),
+        topic,
+        title,
+        author: nicknames[Math.floor(Math.random() * nicknames.length)],
+        avatar: avatars[Math.floor(Math.random() * avatars.length)],
+        createdAgo: nowTime(),
+        tagText: topicMap[topic],
+        content,
+        likes: 0,
+        replies: 0,
+        hot: false
+    };
+      posts = [p, ...posts];    // 新增到最上方
+      rerenderAll();
+      newPostEl.value = "";
+      document.getElementById("newTitle").value = "";
+
+      // 如果你有後端 API：在此呼叫 createPost API; 成功後可用 WebSocket 廣播
+      // fetch('/api/posts', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(p) })
+      //   .catch(() => console.warn('Create post failed (demo)'));
+    });
+
+    /** ========= 事件：互動（讚 +1、回覆 +1） with 樂觀更新 ========= **/
+    discussionsEl.addEventListener("click", async (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+      const card = e.target.closest(".discussion");
+      if (!card) return;
+      const id = card.getAttribute("data-id");
+      const post = posts.find(p => p.id === id);
+      if (!post) return;
+
+      const action = btn.getAttribute("data-action");
+      if (action === "like") {
+        // 樂觀 + 動畫
+        post.likes += 1;
+        const countEl = card.querySelector(".like-count");
+        countEl.textContent = post.likes;
+        addPop(countEl);
+
+        // TODO: 打後端 API（錯了再回滾）
+        try {
+          await fetchLike(id);
+        } catch {
+          post.likes -= 1; // 回滾
+          countEl.textContent = post.likes;
+        }
+      }
+
+      if (action === "reply") {
+        post.replies += 1;
+        const countEl = card.querySelector(".reply-count");
+        countEl.textContent = `${post.replies} 回覆`;
+        addPop(countEl);
+
+        try {
+          await fetchReply(id);
+        } catch {
+          post.replies -= 1;
+          countEl.textContent = `${post.replies} 回覆`;
+        }
+      }
+    });
+
+    // 範例：模擬 API（請換成你的後端路由）
+    function fetchLike(id) {
+      // return fetch(`/api/posts/${id}/like`, { method: 'POST' }).then(r => r.ok ? r : Promise.reject());
+      return new Promise((res) => setTimeout(res, 120)); // demo
+    }
+    function fetchReply(id) {
+      // return fetch(`/api/posts/${id}/reply`, { method: 'POST' }).then(r => r.ok ? r : Promise.reject());
+      return new Promise((res) => setTimeout(res, 120)); // demo
+    }
+
+    /** ========= WebSocket（可選）：即時同步多用戶 ========= **/
+    const WS_URL = ""; // 例如：wss://your-domain/ws
+    if (WS_URL) {
+      const ws = new WebSocket(WS_URL);
+      ws.onmessage = (evt) => {
+        try {
+          const msg = JSON.parse(evt.data);
+          // 後端可以廣播這些事件給所有連線用戶
+          // {type:'post_created', post}
+          // {type:'post_updated', id, patch:{likes:..., replies:...}}
+          if (msg.type === 'post_created' && msg.post) {
+            posts = [msg.post, ...posts];
+            rerenderAll();
+          }
+          if (msg.type === 'post_updated' && msg.id) {
+            const p = posts.find(x => x.id === msg.id);
+            if (p && msg.patch) {
+              Object.assign(p, msg.patch);
+              rerenderAll();
+            }
+          }
+        } catch (e) { console.warn('WS message parse error', e); }
+      };
+    }
+
+    // 初始渲染
+    rerenderAll();
+  </script>
 </body>
 </html>
