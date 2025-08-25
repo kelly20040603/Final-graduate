@@ -10,7 +10,7 @@
 </head>
 		
 <body>
-    <%@ include file="/FinalProject/src/main/resources/static/Taiwan.html" %>
+    <%@ include file="/FinalProject/src/main/resources/static/taiwan.html" %>
 </body>
 
 
